@@ -3,6 +3,7 @@ import { Toaster } from "react-hot-toast";
 import Header from "@/components/Header";
 import Ticker from "@/components/Ticker";
 import Footer from "@/components/Footer";
+import { Suspense } from "react";
 import "./globals.css";
 
 
@@ -21,8 +22,9 @@ export default function RootLayout({ children }) {
     <html lang="bn" data-theme="bazardor">
       <body className={`${hind.className} flex min-h-screen flex-col`}>
         <Header />
-        <Ticker />
-        
+        <Suspense fallback={<div className="skeleton h-10 w-full rounded-none" />}>
+          <Ticker />
+        </Suspense>
         <main className="flex-1">{children}</main>
         <Footer />
         <Toaster position="top-center" />
