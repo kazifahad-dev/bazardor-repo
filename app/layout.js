@@ -21,7 +21,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="bn" data-theme="bazardor">
       <body className={`${hind.className} flex min-h-screen flex-col`}>
-        <Header />
+        <Suspense fallback={<div className="skeleton h-29.5 w-full rounded-none" />}>
+          <Header />
+        </Suspense>
         <Suspense fallback={<div className="skeleton h-10 w-full rounded-none" />}>
           <Ticker />
         </Suspense>
