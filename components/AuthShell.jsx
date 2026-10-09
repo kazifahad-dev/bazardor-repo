@@ -1,6 +1,12 @@
 import Link from "next/link";
 
-export default function AuthShell({ title, subtitle, children }) {
+export default function AuthShell({
+  title,
+  subtitle,
+  children,
+  backHref = "/",
+  backLabel = "← হোম পেজে ফিরে যান",
+}) {
   return (
     <div className="mx-auto flex max-w-md flex-col gap-6 px-4 py-10">
       <div>
@@ -12,8 +18,8 @@ export default function AuthShell({ title, subtitle, children }) {
         {children}
       </div>
 
-      <Link href="/" className="text-sm hover:text-primary">
-        ← হোম পেজে ফিরে যান
+      <Link href={backHref} className="text-sm hover:text-primary">
+        {backLabel}
       </Link>
     </div>
   );
