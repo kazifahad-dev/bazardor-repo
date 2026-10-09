@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
 import AuthShell from "@/components/AuthShell";
 import SocialButtons from "@/components/SocialButtons";
+import { useState, Suspense } from "react";
+import AuthNotice from "@/components/AuthNotice";
 
 export default function SignInPage() {
   const router = useRouter();
@@ -28,8 +29,8 @@ export default function SignInPage() {
     }
 
     toast.success("সফলভাবে সাইন ইন হয়েছে।");
-    router.push("/"); 
-    router.refresh(); 
+    router.push("/");
+    router.refresh();
   }
 
   return (
@@ -37,6 +38,9 @@ export default function SignInPage() {
       title="সাইন ইন"
       subtitle="বিস্তারিত দাম, বাজার তুলনা ও প্রোফাইল দেখতে অ্যাকাউন্টে প্রবেশ করুন।"
     >
+      <Suspense>
+        <AuthNotice />
+      </Suspense>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <label className="flex flex-col gap-1 text-sm font-medium">
           ইমেইল
