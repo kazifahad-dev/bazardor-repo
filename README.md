@@ -85,7 +85,7 @@ Open `http://localhost:3000` in your browser.
 Create a file named `.env.local` in the project root and add the following variables with your own values:
 
 ```env
-NEXT_PUBLIC_API_URL=https://api.api-store.workers.dev/api/bazardor
+NEXT_PUBLIC_API_URL=https://openapi.programming-hero.com/api/bazardor
 
 MONGODB_URI=your-mongodb-connection-string
 BETTER_AUTH_SECRET=a-long-random-secret
