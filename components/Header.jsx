@@ -8,20 +8,21 @@ import { authClient } from "@/lib/auth-client";
 import { categories } from "@/lib/categories";
 import { banglaDate } from "@/lib/format";
 import Avatar from "./Avatar";
+import Image from "next/image";
 
 
-const subscribe = () => () => {};
+const subscribe = () => () => { };
 
 export default function Header() {
-  const pathname = usePathname(); 
+  const pathname = usePathname();
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
 
-  
+
   const { data: session, isPending } = authClient.useSession();
   const user = session?.user;
 
-  
+
   const today = useSyncExternalStore(
     subscribe,
     () => banglaDate(new Date()),
@@ -42,11 +43,17 @@ export default function Header() {
 
   return (
     <header className="border-b border-base-300 bg-base-100">
-      
+
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
         <Link href="/" className="flex items-center gap-2">
-          <span className="flex size-10 items-center justify-center rounded-xl bg-primary text-lg text-primary-content">
-            🛒
+          <span className="flex size-10 items-center justify-center rounded-xl bg-primary">
+            <Image
+              src="/logo-icon.png"
+              alt="বাজার দর"
+              width={24}
+              height={24}
+              className="size-6 object-contain brightness-0 invert"
+            />
           </span>
           <span className="flex flex-col leading-tight">
             <span className="text-xl font-bold tracking-tight">বাজার দর</span>
@@ -55,7 +62,7 @@ export default function Header() {
         </Link>
 
         {isPending ? (
-          
+
           <div className="skeleton h-10 w-28 rounded-lg" />
         ) : user ? (
           <div className="relative">
@@ -73,7 +80,7 @@ export default function Header() {
 
             {menuOpen && (
               <>
-                
+
                 <div
                   className="fixed inset-0 z-10"
                   onClick={() => setMenuOpen(false)}
@@ -123,11 +130,10 @@ export default function Header() {
               <li key={cat.slug} className="shrink-0">
                 <Link
                   href={href}
-                  className={`flex h-8 items-center gap-1.5 rounded-lg px-3 transition ${
-                    active
-                      ? "bg-primary text-primary-content"
-                      : "hover:bg-base-200"
-                  }`}
+                  className={`flex h-8 items-center gap-1.5 rounded-lg px-3 transition ${active
+                    ? "bg-primary text-primary-content"
+                    : "hover:bg-base-200"
+                    }`}
                 >
                   <span>{cat.icon}</span>
                   <span>{cat.name}</span>
